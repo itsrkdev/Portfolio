@@ -43,12 +43,12 @@ app.use("/api/skills", require("./Routes/SkillRoutes"));
 app.use("/api/contact-msg", require("./Routes/ContactMsgRoute"));
 app.use("/api/contact-info", require("./Routes/ContactInfoRoute"))
 
-app.use((req, res) => {
-    res.status(404).json({ message: "Bhai, ye API endpoint exit nahi karta!" });
-});
-
 app.use("/", (req, res) => { 
     res.send("server is running Mongodb connected"); 
+});
+
+app.use((req, res) => {
+    res.status(404).json({ message: "Bhai, ye API endpoint exit nahi karta!" });
 });
 
 // mongoose.connect(process.env.DB_URL)
