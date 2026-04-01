@@ -47,7 +47,9 @@ app.use((req, res) => {
     res.status(404).json({ message: "Bhai, ye API endpoint exit nahi karta!" });
 });
 
-
+app.use("/", (req, res) => { 
+    res.send("server is running Mongodb connected"); 
+});
 
 // mongoose.connect(process.env.DB_URL)
 //  .then(() => {
