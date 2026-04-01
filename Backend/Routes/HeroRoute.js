@@ -16,7 +16,6 @@ router.get("/", async (req, res) => {
         res.status(500).json(err);
     }
 });
-
 // GET all heroes (Admin - Protected)
 router.get("/all", verifyToken, async (req, res) => {
     try {
