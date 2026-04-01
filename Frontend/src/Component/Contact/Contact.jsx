@@ -77,14 +77,14 @@ export default function Contact() {
               {/* Info Side */}
               <div className="contact-info-card">
                 <h2>Contact Information</h2>
-                <p>{info.description}</p>
+                <p>{info?.description}</p>
 
                 <div className="info-links">
                   <div className="info-item">
                     <div className="icon-box"><i className="fa-solid fa-location-dot"></i></div>
                     <div className="text-box">
                       <label>Location</label>
-                      <span>{info.location}</span>
+                      <span>{info?.location}</span>
                     </div>
                   </div>
 
@@ -92,7 +92,7 @@ export default function Contact() {
                     <div className="icon-box"><i className="fa-solid fa-phone"></i></div>
                     <div className="text-box">
                       <label>Phone</label>
-                      <span>{info.phone}</span>
+                      <span>{info?.phone}</span>
                     </div>
                   </div>
 
@@ -100,7 +100,7 @@ export default function Contact() {
                     <div className="icon-box"><i className="fa-solid fa-envelope"></i></div>
                     <div className="text-box">
                       <label>Email</label>
-                      <span>{info.email}</span>
+                      <span>{info?.email}</span>
                     </div>
                   </div>
                 </div>
