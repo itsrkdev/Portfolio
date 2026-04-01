@@ -5,7 +5,6 @@ const { verifyToken } = require("../Middlewere/authMiddleware");
 const multer = require("multer");
 const { storage } = require("../Middlewere/Multer"); // Destructure storage
 const upload = multer({ storage: storage });
-const { verifyToken } = require("../Middlewere/authMiddleware");
 
 //  GET active hero (Frontend - Public)
 router.get("/", async (req, res) => {
