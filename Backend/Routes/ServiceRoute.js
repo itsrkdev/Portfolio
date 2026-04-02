@@ -1,7 +1,9 @@
 const express = require("express");
 const Service = require("../Models/ServiceModel");
 const router = express.Router();
-const upload = require("../Middlewere/Multer"); // Multer import kiya
+const multer = require("multer");
+const { storage } = require("../Middlewere/cloudinaryConfig"); // Destructure storage
+const upload = multer({ storage: storage });
 const { verifyToken } = require("../Middlewere/authMiddleware");
 
 //  GET active services (frontend)
@@ -29,6 +31,12 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
     try {
         let data = { ...req.body };
 
+         // Cloudinary URL assignment
+        if (req.file) {
+            data.image = req.file.path; // Local path ki jagah Cloudinary URL
+        }
+
+
         // Naya active banane se pehle baaki sabko deactivate kar do
         if (data.isActive === "true" || data.isActive === true) {
             await Hero.updateMany({}, { isActive: false });
@@ -50,9 +58,9 @@ router.put("/:id", verifyToken, upload.single("image"), async (req, res) => {
     try {
         let updateData = { ...req.body };
 
-        // 1. Image update logic
+        // 1. Cloudinary Image update
         if (req.file) {
-            updateData.image = `uploads/${req.file.filename}`;
+            updateData.image = req.file.path; 
         }
 
         // 2. Array/JSON Parsing (Kyunki FormData string bhejta hai)
