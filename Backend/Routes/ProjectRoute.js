@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Project = require("../Models/ProjectModel");
-const upload = require("../Middlewere/Multer"); // Multer import kiya
+const multer = require("multer");
+const { storage } = require("../Middlewere/cloudinaryConfig"); // Destructure storage
+const upload = multer({ storage: storage });
 const { verifyToken } = require("../Middlewere/authMiddleware");
 
 //  GET active projects (frontend)
@@ -28,15 +30,15 @@ router.get("/all", verifyToken, async (req, res) => {
 router.post("/", verifyToken, upload.single("image"), async (req, res) => {
     try {
         let data = { ...req.body };
+        
+         // 1. Image handling (Cloudinary URL)
+        if (req.file) {
+            data.image = req.file.path; // Ye Cloudinary ka full URL save karega
+        }
 
         // Naya active banane se pehle baaki sabko deactivate kar do
         if (data.isActive === "true" || data.isActive === true) {
             await Hero.updateMany({}, { isActive: false });
-        }
-
-        // Image path handling
-        if (req.file) {
-            data.image = `uploads/${req.file.filename}`;
         }
 
         // Array parsing for techStack/features
@@ -61,11 +63,11 @@ router.put("/:id", verifyToken, upload.single("image"), async (req, res) => {
     try {
         let updateData = { ...req.body };
 
-        // 1. Image handling
+       // 1. Image handling
         if (req.file) {
-            updateData.image = `uploads/${req.file.filename}`;
+            updateData.image = req.file.path; // New Cloudinary URL
         }
-
+        
         // 2. Array parsing (TechStack wagera ke liye)
         Object.keys(updateData).forEach(key => {
             const value = updateData[key];
