@@ -3,7 +3,7 @@ const router = express.Router();
 const Hero = require("../Models/HeroModel");
 const { verifyToken } = require("../Middlewere/authMiddleware");
 const multer = require("multer");
-const { storage } = require("../Middlewere/Multer"); // Destructure storage
+const { storage } = require("../Middlewere/cloudinaryConfig"); 
 const upload = multer({ storage: storage });
 
 //  GET active hero (Frontend - Public)
