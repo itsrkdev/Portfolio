@@ -7,7 +7,6 @@ const authRoutes = require("./Routes/AuthRoute");
 const path = require('path');
 const os = require("os");
 
-
 function getLocalIP() {
     const interfaces = os.networkInterfaces();
     for (let name of Object.keys(interfaces)) {
@@ -19,10 +18,6 @@ function getLocalIP() {
     }
     return "localhost";
 }
-
-
-
-
 
 const app = express()
 app.use(cors());
@@ -51,14 +46,9 @@ app.use((req, res) => {
     res.status(404).json({ message: "Bhai, ye API endpoint exit nahi karta!" });
 });
 
-// mongoose.connect(process.env.DB_URL)
-//  .then(() => {
-//         console.log("MongoDB connected");
-//         app.listen(PORT, () => {
-//             console.log(`Server running on http://localhost:${PORT}`);
-//         })
-//     })
-//     .catch(err => console.log("MongoDB connection error:", err));
+app.get("/status", (req, res) => {
+  res.send("Server is alive and kicking!");
+});
 
 
 mongoose.connect(process.env.DB_URL)
