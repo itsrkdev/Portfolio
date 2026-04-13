@@ -28,7 +28,6 @@ app.use(express.json());
 // Server.js mein dono rakhein
 // app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-
 // Routes Use Karein
 app.use("/api/auth", authRoutes);
 app.use("/api/hero", require("./Routes/HeroRoute"));
