@@ -20,10 +20,11 @@ I am a passionate **MERN Stack Developer** dedicated to building scalable, user-
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend:** React.js, Tailwind CSS, Framer Motion
+- **Frontend:** React.js, Tailwind CSS, Custom CSS (for advanced styling),Animation
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
-- **Hosting:** Netlify / Vercel
+- **Media Storage:** Cloudinary (for optimized image hosting)
+- **Hosting:** Netlify / Render
 
 ---
 
