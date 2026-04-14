@@ -81,7 +81,8 @@ export default function Hero() {
                                 </a>
 
                                 <div className="hero-socials">
-                                    <a href={hero.social?.facebook} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook-f"></i></a>
+                                    <a href={hero.social?.github} target="_blank" rel="noreferrer"><i className="fa-brands fa-github"></i></a>
+                                    {/* <a href={hero.social?.facebook} target="_blank" rel="noreferrer"><i className="fa-brands fa-facebook-f"></i></a> */}
                                     <a href={hero.social?.instagram} target="_blank" rel="noreferrer"><i className="fa-brands fa-instagram"></i></a>
                                     <a href={hero.social?.linkedin} target="_blank" rel="noreferrer"><i className="fa-brands fa-linkedin-in"></i></a>
                                 </div>
