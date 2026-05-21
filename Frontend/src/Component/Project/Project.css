@@ -1,5 +1,5 @@
 #modern-projects-section {
-  --bg-dark: #0a0f1a;
+  --bg-dark: #0a0f1a00;
   --accent: #ff6f61;
   background-color: var(--bg-dark);
   padding: 100px 20px;

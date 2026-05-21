@@ -1,5 +1,5 @@
 .hero-modern-section {
-    --bg-dark: #0a0f1a;
+    --bg-dark: #0a0f1a00;
     --accent: #ff6f61;
     background-color: var(--bg-dark);
     min-height: 100vh;

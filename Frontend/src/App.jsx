@@ -14,7 +14,7 @@ import PageNotFound from './Component/PageNotFound/PageNotFound'
 
 import ProtectedRoute from '../src/Admin/ProtectedRoute';
 import LoginPage from "../src/Admin/LoginPage";
-
+import CanvasBackground from "./CanvasBackground"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -74,6 +74,9 @@ function App() {
 
   return (
     <>
+      {/* 3D Stars background yahan pure app par apply hoga */}
+      <CanvasBackground />
+      {/* Saare routes iske upar chalenge */}
       <RouterProvider router={router} />
     </>
   )
