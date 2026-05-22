@@ -11,7 +11,7 @@ export default function Hero() {
     const typedElement = useRef(null); // Ref use karna Typed.js ke liye safest hai
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/api/hero`)
+        axios.get(`${BASE_URL}/api/home`)
             .then(res => {
                 setHero(res.data);
                 setLoading(false);
