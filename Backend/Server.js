@@ -30,7 +30,7 @@ app.use(express.json());
 
 // Routes Use Karein
 app.use("/api/auth", authRoutes);
-app.use("/api/hero", require("./Routes/HeroRoute"));
+app.use("/api/home", require("./Routes/HeroRoute"));
 app.use("/api/services", require("./Routes/ServiceRoute"));
 app.use("/api/projects", require("./Routes/ProjectRoute"));
 app.use("/api/skills", require("./Routes/SkillRoutes"));
