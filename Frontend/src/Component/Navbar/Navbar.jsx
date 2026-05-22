@@ -30,7 +30,7 @@ export default function Navbar() {
                     </div>
 
                     <ul className={`nav-links ${open ? "active" : ""}`}>
-                        <li><Link to="/" className={location.pathname === "/" ? "active-link" : ""} onClick={closeMenu}>Home</Link></li>
+                        <li><Link to="/home" className={location.pathname === "/" ? "active-link" : ""} onClick={closeMenu}>Home</Link></li>
                         <li><Link to="/service" className={location.pathname === "/service" ? "active-link" : ""} onClick={closeMenu}>Services</Link></li>
                         <li><Link to="/project" className={location.pathname === "/project" ? "active-link" : ""} onClick={closeMenu}>Projects</Link></li>
                         <li><Link to="/skills" className={location.pathname === "/skills" ? "active-link" : ""} onClick={closeMenu}>Skills</Link></li>
