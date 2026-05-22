@@ -24,6 +24,17 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element:<>
+          <Hero />,
+        <Services />,
+          <Project />,
+          <Skills />,
+          <Contact />
+        </> 
+        
+      },
+        {
+        path:"home",
         element: <Hero />
       },
       {
