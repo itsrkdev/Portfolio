@@ -32,7 +32,7 @@
 .bento-header h2 span {
   color: var(--accent);
   /* The "Glow" text effect */
-  /* text-shadow: 0 0 30px rgba(255, 111, 97, 0.3); */
+  text-shadow: 0 0 30px rgba(255, 111, 97, 0.3); 
 }
 
 .bento-header p {
