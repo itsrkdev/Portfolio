@@ -4,16 +4,19 @@
     box-sizing: border-box;
 }
 
-/* Google font se Space Grotesk import karein */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+/* /* 1. Google Font se Playfair Display ko import karein */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap');
 
+/* 2. Saare text elements par apply karein */
 html, body, p, span, h1, h2, h3, h4, h5, h6, a, button, li, input, textarea {
-    font-family: 'Space Grotesk', sans-serif !important;
+    font-family: 'Playfair Display', Georgia, serif !important;
 }
 
+/* 3. Icons ko safe rakhne ke liye */
 a i, button i, span i {
     font-family: inherit;
-}
+} */
+
 
 
 
