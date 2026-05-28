@@ -4,17 +4,14 @@
     box-sizing: border-box;
 }
 
-/* /* 1. Google Font se Playfair Display ko import karein */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap');
-
-/* 2. Saare text elements par apply karein */
+/* /* Icons ko chhodkar sirf text elements ka font badalne ke liye */
 html, body, p, span, h1, h2, h3, h4, h5, h6, a, button, li, input, textarea {
-    font-family: 'Playfair Display', Georgia, serif !important;
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
 }
 
-/* 3. Icons ko safe rakhne ke liye */
+/* Taaki a tag ke andar agar icon hai to uska font kharab na ho */
 a i, button i, span i {
-    font-family: inherit;
+    font-family: inherit; /* Isse icon default font awesome par chala jayega */
 } */
 
 
