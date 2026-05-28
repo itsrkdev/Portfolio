@@ -10,7 +10,7 @@ html, body, p, span, h1, h2, h3, h4, h5, h6, a, button, li, input, textarea {
 }
 
 /* Taaki a tag ke andar agar icon hai to uska font kharab na ho */
-a i, button i, span span i {
+a i, button i, span i {
     font-family: inherit; /* Isse icon default font awesome par chala jayega */
 } */
 
