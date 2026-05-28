@@ -4,16 +4,27 @@
     box-sizing: border-box;
 }
 
-/* /* Icons ko chhodkar sirf text elements ka font badalne ke liye */
-html, body, p, span, h1, h2, h3, h4, h5, h6, a, button, li, input, textarea {
-    font-family: Georgia, 'Times New Roman', Times, serif !important;
+/* 1. Global Reset: Poori website par font set karein bina !important ke */
+html, body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-/* Taaki a tag ke andar agar icon hai to uska font kharab na ho */
-a i, button i,  {
-    font-family: inherit; /* Isse icon default font awesome par chala jayega */
-} */
+/* 2. Specificity Badha Kar Text Elements Ko Target Karein */
+body h1, body h2, body h3, body h4, body h5, body h6, 
+body p, body li, body input, body textarea, body button {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
+/* 3. Sirf normal links aur normal spans ka font badlein (Navbar ke layout ko chhede bina) */
+body a:not([class*="fa-"]), 
+body span:not([class*="fa-"]):not(.dot) {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* 4. SAFEGUARD: Icons aur custom dots ko unka asli font aur property wapas dein */
+.fa, .fas, .far, .fab, [class^="fa-"], [class*=" fa-"], i, svg, .dot {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome", inherit !important;
+}
 
 
 
