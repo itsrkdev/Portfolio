@@ -41,7 +41,7 @@
 }
 
 .nav-logo span {
-    color: var(--accent) !important;
+    color: var(--accent);
 }
 
 /* Links Layout */
