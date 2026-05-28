@@ -4,13 +4,15 @@
     box-sizing: border-box;
 }
 
-/* Poori website ke har ek element par Home page wala Serif font apply karne ke liye */
-* {
+/* 1. Normal saare elements par aapka pasandida font apply hoga */
+*, *::before, *::after {
     font-family: Georgia, 'Times New Roman', Times, serif !important;
 }
 
-/* Form elements (buttons, inputs) ke liye bhi fix */
-button, input, select, textarea {
-    font-family: Georgia, 'Times New Roman', Times, serif !important;
+/* 2. CRITICAL FIX: Icons ko force-serif se bachane ke liye unka font wapas purana kar do */
+[class^="fa-"], [class*=" fa-"], 
+.fa, .fas, .far, .fab, .fal, .fad, .fat,
+i, svg {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 5 Free", "Font Awesome 5 Brands", "FontAwesome" !important;
+    font-weight: 900 !important; /* Icons thik se dikhne ke liye weight zaroori hai */
 }
-
