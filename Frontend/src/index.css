@@ -4,5 +4,13 @@
     box-sizing: border-box;
 }
 
+/* Poori website ke har ek element par Home page wala Serif font apply karne ke liye */
+* {
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
 
+/* Form elements (buttons, inputs) ke liye bhi fix */
+button, input, select, textarea {
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
 
