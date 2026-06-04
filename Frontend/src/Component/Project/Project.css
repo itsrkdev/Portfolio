@@ -1,11 +1,14 @@
 #modern-projects-section {
-  --bg-dark: #0a0f1a00;
-  --accent: #ff6f61;
+  --bg-dark: transparent; 
+  --accent: #ff6f61; /* Aapka signature coral-orange color */
+  /* FIX: Slate-Blue mix hata kar pure dark transparent glass blend kiya */
+  --card-bg: rgba(255, 255, 255, 0.03); 
+  
   background-color: var(--bg-dark);
-  padding: 100px 20px;
+  padding: 90px 20px;
   min-height: 100vh;
-  color: white;
-  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .project-container {
@@ -13,244 +16,228 @@
   margin: 0 auto;
 }
 
+/* Header Styling */
 .project-header {
   text-align: center;
   margin-bottom: 60px;
 }
 
-.project-header h1 {
-  font-size: 3.5rem;
+.project-header .section-title {
+  font-size: 3.2rem;
   font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 12px;
 }
 
-.project-header h1 span {
+.project-header .section-title span {
   color: var(--accent);
   text-shadow: 0 0 20px rgba(255, 111, 97, 0.3);
 }
 
-.project-header p {
+.section-subtitle {
   color: #94a3b8;
-  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: 400;
 }
 
-/* The Grid */
+/* Grid Layout */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 30px;
 }
 
-/* Project Item */
+/* Premium Card Structure */
 .project-item {
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06); 
+  border-radius: 20px;
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
   position: relative;
-  border-radius: 24px;
-  overflow: hidden; /* Clips the image and overlay */
-  background: #1e293b;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  height: 300px; /* Fixed height for consistency */
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              background-color 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
+/* --- HIGH-END MODERN GLOW HOVER EFFECT --- */
 .project-item:hover {
-  transform: translateY(-10px);
-  border-color: var(--accent);
+  transform: translateY(-8px);
+  border-color: rgba(255, 111, 97, 0.3); 
+  /* Pure ambient soft coral neon aura glow without harsh dark block shadows */
+  background: rgba(255, 111, 97, 0.02) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
+              0 0 30px rgba(255, 111, 97, 0.2); 
 }
 
+/* Image Presentation (Standard 16:9 widescreen) */
 .project-image-box {
   width: 100%;
-  height: 100%;
-  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000000; /* FIX: Pure deep black behind image, no blue tint */
 }
 
-.project-image-box img {
+.project-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures screenshots look good */
-  transition: transform 0.6s ease;
+  object-fit: cover; 
+  object-position: top;
+  filter: brightness(0.9);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
 }
 
-.project-item:hover img {
-  transform: scale(1.1); /* Subtle zoom on hover */
+.project-item:hover .project-img {
+  transform: scale(1.04); 
+  filter: brightness(1.02);
 }
 
-/* The Modern Overlay */
-.project-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to top, 
-    rgba(10, 15, 26, 0.95) 10%, 
-    rgba(255, 111, 97, 0.2) 100%
-  );
+/* Card Content Area */
+.project-info-content {
+  padding: 26px;
+  /* FIX: Light translucent glass texture layer instead of blue blocks */
+  background: rgba(255, 255, 255, 0.01); 
   display: flex;
-  align-items: flex-end;
-  padding: 30px;
-  opacity: 0; /* Hidden by default */
-  transition: opacity 0.4s ease;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-.project-item:hover .project-overlay {
-  opacity: 1;
-}
-
-.overlay-content {
-  transform: translateY(20px);
-  transition: transform 0.4s ease;
-}
-
-.project-item:hover .overlay-content {
-  transform: translateY(0);
-}
-
+/* Minimalist Accent Tag */
 .project-tag {
+  display: inline-block;
   color: var(--accent);
-  font-size: 0.8rem;
+  background: rgba(255, 111, 97, 0.08);
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  display: block;
-  margin-bottom: 8px;
+  letter-spacing: 1.5px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 111, 97, 0.15);
+  margin-bottom: 12px;
+  width: max-content;
 }
 
-.overlay-content h2 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-  color: white;
+/* Card Heading Title with Soft Text Glow on Hover */
+.project-card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 24px 0;
+  line-height: 1.4;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
+.project-item:hover .project-card-title {
+  color: var(--accent);
+  text-shadow: 0 0 15px rgba(255, 111, 97, 0.3);
+}
+
+.project-action-box {
+  margin-top: auto;
+}
+
+/* Action Link / Button */
 .project-link {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  color: white;
+  justify-content: center;
+  gap: 8px;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: gap 0.3s;
+  background: rgba(255, 255, 255, 0.04);
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
 }
 
 .project-link:hover {
-  gap: 15px;
-  color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 8px 20px rgba(255, 111, 97, 0.4);
 }
 
-/* ... (Aapka existing desktop CSS same rahega) ... */
-
-/* --- Responsive Media Queries --- */
-
-@media (max-width: 1024px) {
-  .project-header h1 {
-    margin-top: 20px;
-    font-size: 2.8rem;
-  }
-  .projects-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
+.project-link i {
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
 }
 
+.project-link:hover i {
+  transform: translateX(3px);
+}
+
+/* --- Responsive Rules --- */
 @media (max-width: 768px) {
   #modern-projects-section {
-    padding: 60px 15px;
+    padding: 60px 16px;
   }
-
-  .project-header {
-    margin-bottom: 40px;
+  .project-header .section-title {
+    font-size: 2.5rem;
   }
-
-  .project-header h1 {
-    font-size: 2.2rem;
-  }
-
-  .project-item {
-    height: 280px; /* Tablet/Mobile ke liye height thodi kam */
-  }
-
-  /* Mobile par hover overlay ko hamesha thoda visible rakhna better hota hai */
-  .project-overlay {
-    background: linear-gradient(
-      to top, 
-      rgba(10, 15, 26, 0.9) 30%, 
-      transparent 100%
-    );
-    opacity: 1; /* Mobile par hamesha dikhega kyunki hover nahi hota */
-    align-items: flex-end;
-    padding: 20px;
-  }
-
-  .overlay-content {
-    transform: translateY(0); /* Animation reset for mobile */
-  }
-
-  .overlay-content h2 {
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-  }
-}
-
-@media (max-width: 480px) {
   .projects-grid {
-    grid-template-columns: 1fr; /* Pure mobile par single column */
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 20px;
   }
-
-  .project-item {
-    height: 240px; /* Chote phones ke liye height */
-    border-radius: 20px;
-  }
-
-  .project-header h1 {
-    font-size: 1.8rem;
-  }
-
-  .project-tag {
-    font-size: 0.7rem;
-  }
-
-  .project-link {
-    font-size: 0.85rem;
+  .project-header{
+    margin-top: 30px;
   }
 }
 
-/* --- Project Skeleton Styles --- */
+/* --- FIX: Universal Dark Charcoal Skeleton Loading Theme (No Blue Tint) --- */
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #16161a;
+}
 
-/* Shimmer Animation (Agar pehle nahi dali toh ye copy karein) */
+.skeleton-text-box {
+  padding: 26px;
+  background: #0f0f12;
+}
+
 .skeleton {
-    background: #1e1e1e;
-    background: linear-gradient(
-        90deg, 
-        #1e1e1e 25%, 
-        #2a2a2a 50%, 
-        #1e1e1e 75%
-    );
-    background-size: 200% 100%;
-    animation: skeleton-shimmer 1.5s infinite linear;
-    border-radius: 12px;
+  /* FIX: Blue blocks slate gradients changed to sleek cosmic gray tones */
+  background: linear-gradient(90deg, #16161a 25%, #24242b 50%, #16161a 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite linear;
+}
+
+.skeleton-tag {
+  width: 65px;
+  height: 22px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 24px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+}
+
+.skeleton-btn {
+  width: 100%;
+  height: 44px;
+  border-radius: 12px;
 }
 
 @keyframes skeleton-shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
-/* Project Image Skeleton */
-.skeleton-project-img {
-    width: 100%;
-    aspect-ratio: 16 / 10; /* Image ke size ke hisaab se skeleton */
-    border-radius: 15px;
-}
-
-/* Container Style while loading */
 .skeleton-active {
-    pointer-events: none;
-    overflow: hidden;
-    border-radius: 15px;
+  pointer-events: none;
 }
-
-/* Taaki loading ke waqt overlay na dikhe */
-.skeleton-active .project-overlay {
-    display: none;
-}
-
-
