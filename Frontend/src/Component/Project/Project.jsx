@@ -23,24 +23,32 @@ export default function Project() {
   return (
     <section id="modern-projects-section">
       <div className="project-container">
+        
+        {/* Classic Clean Header */}
         <header className="project-header">
           <h1 className="section-title">Latest <span>Works</span></h1>
-          <p>A collection of my recent development projects</p>
+          <p className="section-subtitle">A collection of my recent development projects</p>
+          {/* <div className="header-underline"></div> */}
         </header>
 
+        {/* Projects Grid */}
         <div className="projects-grid">
           {loading ? (
-            // Skeleton Loop: Loading ke waqt 4 project boxes dikhayega
-            [1, 2, 3, 4].map((item) => (
+            [1, 2, 3, 4, 5, 6].map((item) => (
               <div className="project-item skeleton-active" key={item}>
-                <div className="project-image-box">
-                  <div className="skeleton skeleton-project-img"></div>
+                <div className="project-image-box skeleton-image"></div>
+                <div className="skeleton-text-box">
+                  <div className="skeleton skeleton-tag"></div>
+                  <div className="skeleton skeleton-title"></div>
+                  <div className="skeleton skeleton-btn"></div>
                 </div>
               </div>
             ))
           ) : (
             projects.map((project, idx) => (
               <div className="project-item" key={idx}>
+                
+                {/* Clean Image Container */}
                 <div className="project-image-box">
                   <img
                     src={
@@ -54,18 +62,23 @@ export default function Project() {
                       e.target.src = "https://via.placeholder.com/400x250?text=Project+Preview";
                     }}
                   />
+                </div>
 
-                  {/* Modern Hover Overlay */}
-                  <div className="project-overlay">
-                    <div className="overlay-content">
-                      <span className="project-tag">{project.tag}</span>
-                      <h2>{project.title}</h2>
-                      <a href={project.link} className="project-link">
-                        View Details <i className="fa-solid fa-arrow-right"></i>
-                      </a>
-                    </div>
+                {/* Highly Readable Info Content */}
+                <div className="project-info-content">
+                  <div className="project-meta">
+                    <span className="project-tag">{project.tag || "Development"}</span>
+                  </div>
+                  <h3 className="project-card-title">{project.title}</h3>
+                  
+                  {/* Premium Solid Action Button */}
+                  <div className="project-action-box">
+                    <a href={project.link} target="_blank" rel="noreferrer" className="project-link">
+                      View Project <i className="fa-solid fa-arrow-right"></i>
+                    </a>
                   </div>
                 </div>
+
               </div>
             ))
           )}
@@ -74,3 +87,4 @@ export default function Project() {
     </section>
   );
 }
+
