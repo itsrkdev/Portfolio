@@ -108,8 +108,33 @@
   flex-grow: 1;
 }
 
-/* Minimalist Accent Tag */
+/* Container ko full width handle karne ke liye set kiya */
+.project-meta {
+  display: block; /* Flex hata kar block kiya taaki text flow natural rahe */
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* FIX: Isi pure CSS block se single string bina cut-out huye wrap ho jayegi */
 .project-tag {
+  display: inline-block;
+  color: var(--accent);
+  background: rgba(255, 111, 97, 0.08);
+  font-size: 0.8rem; 
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 111, 97, 0.15);
+  
+  /* --- CRITICAL CSS TRICK FOR SINGLE STRING WRAPPING --- */
+  white-space: normal !important;      /* Text ko force karega normal flow me tootne ke liye */
+  word-break: break-word !important;   /* Agar bada word ho toh toot jaye */
+  overflow-wrap: break-word !important;/* Purani line khatam hote hi niche shift karega */
+  line-height: 1.8 !important;         /* Do lines ke beech me thoda space banaega */
+}
+/* .project-tag {
   display: inline-block;
   color: var(--accent);
   background: rgba(255, 111, 97, 0.08);
@@ -122,7 +147,7 @@
   border: 1px solid rgba(255, 111, 97, 0.15);
   margin-bottom: 12px;
   width: max-content;
-}
+} */
 
 /* Card Heading Title with Soft Text Glow on Hover */
 .project-card-title {
