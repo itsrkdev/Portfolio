@@ -14,45 +14,6 @@ export default function SectionAdmin({ apiUrl, fields, fieldsType, isReadOnly = 
 
   const token = localStorage.getItem("adminToken");
 
-  // const fetchData = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const isSingleObject = apiUrl === "/api/hero" || apiUrl === "/api/contact-info";
-
-  //     const url = isSingleObject
-  //       ? `${BASE_URL}${apiUrl}`
-  //       : `${BASE_URL}${apiUrl}/all`;
-
-  //     // Token ko header mein bhejien
-  //     const res = await axios.get(url, {
-  //       headers: { token: `Bearer ${token}` }
-  //     });
-
-  //     const result = res.data;
-
-  //     // 🔴 FIX HERE: Phele check karo ki result valid object/array hai ya nahi
-  //     if (Array.isArray(result)) {
-  //       setData(result);
-  //     } else if (result && typeof result === "object" && Object.keys(result).length > 0) {
-  //       // Agar single object hai aur usme data hai (null ya empty nahi hai)
-  //       setData([result]);
-  //     } else {
-  //       // Agar response null, undefined, ya empty object {} hai
-  //       setData([]);
-  //     }
-
-  //   } catch (err) {
-  //     console.error("Fetch Error:", err);
-  //     if (err.response?.status === 401 || err.response?.status === 403) {
-  //       localStorage.removeItem("adminToken");
-  //       window.location.href = "/login";
-  //     }
-  //     setData([]);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -68,10 +29,20 @@ export default function SectionAdmin({ apiUrl, fields, fieldsType, isReadOnly = 
       });
 
       const result = res.data;
-      setData(Array.isArray(result) ? result : result ? [result] : []);
+
+      // 🔴 FIX HERE: Phele check karo ki result valid object/array hai ya nahi
+      if (Array.isArray(result)) {
+        setData(result);
+      } else if (result && typeof result === "object" && Object.keys(result).length > 0) {
+        // Agar single object hai aur usme data hai (null ya empty nahi hai)
+        setData([result]);
+      } else {
+        // Agar response null, undefined, ya empty object {} hai
+        setData([]);
+      }
+
     } catch (err) {
       console.error("Fetch Error:", err);
-      // Agar token expire ho jaye toh user ko wapas login par bhej sakte hain
       if (err.response?.status === 401 || err.response?.status === 403) {
         localStorage.removeItem("adminToken");
         window.location.href = "/login";
@@ -81,6 +52,35 @@ export default function SectionAdmin({ apiUrl, fields, fieldsType, isReadOnly = 
       setLoading(false);
     }
   };
+
+  // const fetchData = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const isSingleObject = apiUrl === "/api/hero" || apiUrl === "/api/contact-info";
+
+  //     const url = isSingleObject
+  //       ? `${BASE_URL}${apiUrl}`
+  //       : `${BASE_URL}${apiUrl}/all`;
+
+  //     // Token ko header mein bhejien
+  //     const res = await axios.get(url, {
+  //       headers: { token: `Bearer ${token}` }
+  //     });
+
+  //     const result = res.data;
+  //     setData(Array.isArray(result) ? result : result ? [result] : []);
+  //   } catch (err) {
+  //     console.error("Fetch Error:", err);
+  //     // Agar token expire ho jaye toh user ko wapas login par bhej sakte hain
+  //     if (err.response?.status === 401 || err.response?.status === 403) {
+  //       localStorage.removeItem("adminToken");
+  //       window.location.href = "/login";
+  //     }
+  //     setData([]);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
 
 
