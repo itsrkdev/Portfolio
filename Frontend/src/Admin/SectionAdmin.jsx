@@ -14,45 +14,6 @@ export default function SectionAdmin({ apiUrl, fields, fieldsType, isReadOnly = 
 
   const token = localStorage.getItem("adminToken");
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const isSingleObject = apiUrl === "/api/hero" || apiUrl === "/api/contact-info";
-
-      const url = isSingleObject
-        ? `${BASE_URL}${apiUrl}`
-        : `${BASE_URL}${apiUrl}/all`;
-
-      // Token ko header mein bhejien
-      const res = await axios.get(url, {
-        headers: { token: `Bearer ${token}` }
-      });
-
-      const result = res.data;
-
-      // 🔴 FIX HERE: Phele check karo ki result valid object/array hai ya nahi
-      if (Array.isArray(result)) {
-        setData(result);
-      } else if (result && typeof result === "object" && Object.keys(result).length > 0) {
-        // Agar single object hai aur usme data hai (null ya empty nahi hai)
-        setData([result]);
-      } else {
-        // Agar response null, undefined, ya empty object {} hai
-        setData([]);
-      }
-
-    } catch (err) {
-      console.error("Fetch Error:", err);
-      if (err.response?.status === 401 || err.response?.status === 403) {
-        localStorage.removeItem("adminToken");
-        window.location.href = "/login";
-      }
-      setData([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // const fetchData = async () => {
   //   try {
   //     setLoading(true);
@@ -68,10 +29,20 @@ export default function SectionAdmin({ apiUrl, fields, fieldsType, isReadOnly = 
   //     });
 
   //     const result = res.data;
-  //     setData(Array.isArray(result) ? result : result ? [result] : []);
+
+  //     // 🔴 FIX HERE: Phele check karo ki result valid object/array hai ya nahi
+  //     if (Array.isArray(result)) {
+  //       setData(result);
+  //     } else if (result && typeof result === "object" && Object.keys(result).length > 0) {
+  //       // Agar single object hai aur usme data hai (null ya empty nahi hai)
+  //       setData([result]);
+  //     } else {
+  //       // Agar response null, undefined, ya empty object {} hai
+  //       setData([]);
+  //     }
+
   //   } catch (err) {
   //     console.error("Fetch Error:", err);
-  //     // Agar token expire ho jaye toh user ko wapas login par bhej sakte hain
   //     if (err.response?.status === 401 || err.response?.status === 403) {
   //       localStorage.removeItem("adminToken");
   //       window.location.href = "/login";
@@ -81,6 +52,35 @@ export default function SectionAdmin({ apiUrl, fields, fieldsType, isReadOnly = 
   //     setLoading(false);
   //   }
   // };
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const isSingleObject = apiUrl === "/api/hero" || apiUrl === "/api/contact-info";
+
+      const url = isSingleObject
+        ? `${BASE_URL}${apiUrl}`
+        : `${BASE_URL}${apiUrl}/all`;
+
+      // Token ko header mein bhejien
+      const res = await axios.get(url, {
+        headers: { token: `Bearer ${token}` }
+      });
+
+      const result = res.data;
+      setData(Array.isArray(result) ? result : result ? [result] : []);
+    } catch (err) {
+      console.error("Fetch Error:", err);
+      // Agar token expire ho jaye toh user ko wapas login par bhej sakte hain
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        localStorage.removeItem("adminToken");
+        window.location.href = "/login";
+      }
+      setData([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
 
@@ -286,18 +286,46 @@ return (
       )}
 
       <hr />
-
-      {/* List Section - Responsive Grid */}
+{/* List Section */}
       <h3 style={{ marginTop: "20px" }}>Existing Records</h3>
       {loading ? (
-        <p>Loading...</p>
+        <p>Loading data...</p>
       ) : (
-        <div style={{ 
-          display: "grid", 
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", // 300px se 280px kiya for small phones
-          gap: "15px" 
-        }}>
-           {data.length > 0 ? data.map(item => ( <div key={item._id} style={{ border: "1px solid #ddd", padding: "15px", borderRadius: "8px", background: "white", boxShadow: "0 2px 4px rgba(0,0,0,0.05)" }}> {fields.map(f => ( f === "image" && item[f] ? ( <img key={f} src={ item[f].startsWith('http') ? item[f].replace(/ /g, "%20") : `${BASE_URL}${item[f].startsWith('/') ? '' : '/'}${item[f]}`.replace(/([^:]\/)\/+/g, "$1") } alt="img" style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "4px", marginBottom: "10px" }} /> ) : f !== "image" && ( <p key={f} style={{ margin: "5px 0", fontSize: "14px", wordBreak: "break-word" }}> <strong>{f}:</strong> {Array.isArray(item[f]) ? item[f].join(", ") : item[f]?.toString()} </p> ) ))} <div style={{ marginTop: "15px", display: "flex", gap: "10px" }}> {!isReadOnly && ( <button onClick={() => handleEdit(item)} style={{ flex: 1, padding: "8px", background: "#ffc107", border: "none", borderRadius: "4px" }}>Edit</button> )} <button onClick={() => handleDelete(item._id)} style={{ flex: 1, padding: "8px", background: "#dc3545", color: "white", border: "none", borderRadius: "4px" }}>Delete</button> </div> </div> )) : <p>No records found.</p>} 
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "20px" }}>
+          {data.length > 0 ? data.map(item => (
+            <div key={item._id} style={{ border: "1px solid #ddd", padding: "15px", borderRadius: "8px", background: "white", boxShadow: "0 2px 4px rgba(0,0,0,0.05)" }}>
+              {fields.map(f => (
+                f === "image" && item[f] ? (
+                  <img
+                    key={f}
+                    src={
+                      item[f].startsWith('http')
+                        ? item[f].replace(/ /g, "%20")
+                        : `${BASE_URL}${item[f].startsWith('/') ? '' : '/'}${item[f]}`.replace(/([^:]\/)\/+/g, "$1")
+                      // Ye regex ensure karega ki double slash (//) na bane
+                    }
+                    alt="img"
+                    style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "4px", marginBottom: "10px" }}
+                    onError={(e) => {
+                      console.log("Failed URL:", e.target.src);
+                      e.target.src = "https://via.placeholder.com/150?text=Image+Not+Found";
+                    }}
+                  />
+                ) : f !== "image" && (
+                  <p key={f} style={{ margin: "5px 0" }}>
+                    <strong>{f}:</strong> {Array.isArray(item[f]) ? item[f].join(", ") : item[f]?.toString()}
+                  </p>
+                )
+              ))}
+
+              <div style={{ marginTop: "15px", display: "flex", gap: "10px" }}>
+                {!isReadOnly && (
+                  <button onClick={() => handleEdit(item)} style={{ flex: 1, padding: "8px", background: "#ffc107", border: "none", borderRadius: "4px", cursor: "pointer" }}>Edit</button>
+                )}
+                <button onClick={() => handleDelete(item._id)} style={{ flex: 1, padding: "8px", background: "#dc3545", color: "white", border: "none", borderRadius: "4px", cursor: "pointer" }}>Delete</button>
+              </div>
+            </div>
+          )) : <p>No records found.</p>}
          
         </div>
       )}
