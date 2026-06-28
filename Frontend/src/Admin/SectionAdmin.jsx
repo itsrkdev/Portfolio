@@ -14,30 +14,33 @@ export default function SectionAdmin({ apiUrl, fields, fieldsType, isReadOnly = 
 
   const token = localStorage.getItem("adminToken");
 
+// 🔴 Is poore fetchData function ko SectionAdmin.jsx mein replace karein
   const fetchData = async () => {
     try {
       setLoading(true);
-      const isSingleObject = apiUrl === "/api/hero" || apiUrl === "/api/contact-info";
 
-      const url = isSingleObject
+      // Contact info ke paas /all route nahi hai, isliye sirf usko alag rakhenge
+      const isContactSection = apiUrl === "/api/contact-info";
+
+      // Hero aur baaki sabhi sections /all par jayenge (e.g., /api/hero/all)
+      // Contact info direct jayega (e.g., /api/contact-info)
+      const url = isContactSection
         ? `${BASE_URL}${apiUrl}`
         : `${BASE_URL}${apiUrl}/all`;
 
-      // Token ko header mein bhejien
+      // Token ke sath backend ko hit karenge
       const res = await axios.get(url, {
         headers: { token: `Bearer ${token}` }
       });
 
       const result = res.data;
 
-      // 🔴 FIX HERE: Phele check karo ki result valid object/array hai ya nahi
+      // Data format handling taaki card crash na ho aur show ho sake
       if (Array.isArray(result)) {
         setData(result);
       } else if (result && typeof result === "object" && Object.keys(result).length > 0) {
-        // Agar single object hai aur usme data hai (null ya empty nahi hai)
         setData([result]);
       } else {
-        // Agar response null, undefined, ya empty object {} hai
         setData([]);
       }
 
