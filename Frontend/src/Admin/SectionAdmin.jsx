@@ -19,11 +19,15 @@ export default function SectionAdmin({ apiUrl, fields, fieldsType, isReadOnly = 
   const fetchData = async () => {
     try {
       setLoading(true);
-      const isSingleObject = apiUrl === "/api/hero" || apiUrl === "/api/contact-info";
 
-      const url = isSingleObject
-        ? `${BASE_URL}${apiUrl}`
-        : `${BASE_URL}${apiUrl}/all`;
+      const url = apiUrl === "/api/contact-info"
+  ? `${BASE_URL}${apiUrl}`
+  : `${BASE_URL}${apiUrl}/all`;
+      // const isSingleObject = apiUrl === "/api/hero" || apiUrl === "/api/contact-info";
+
+      // const url = isSingleObject
+      //   ? `${BASE_URL}${apiUrl}`
+      //   : `${BASE_URL}${apiUrl}/all`;
 
       // Token ko header mein bhejien
       const res = await axios.get(url, {
