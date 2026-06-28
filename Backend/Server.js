@@ -31,13 +31,14 @@ app.use(express.json());
 // Routes Use Karein
 app.use("/api/auth", authRoutes);
 app.use("/api/home", require("./Routes/HeroRoute"));
+app.use("/api/hero", require("./Routes/HeroRoute")); 
 app.use("/api/services", require("./Routes/ServiceRoute"));
 app.use("/api/projects", require("./Routes/ProjectRoute"));
 app.use("/api/skills", require("./Routes/SkillRoutes"));
 app.use("/api/contact-msg", require("./Routes/ContactMsgRoute"));
-app.use("/api/contact-info", require("./Routes/ContactInfoRoute"))
+app.use("/api/contact-info", require("./Routes/ContactInfoRoute"));
 
-app.use("/", (req, res) => { 
+app.get("/", (req, res) => { 
     res.send("server is running Mongodb connected"); 
 });
 
