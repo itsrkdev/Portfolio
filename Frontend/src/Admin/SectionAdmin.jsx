@@ -258,39 +258,8 @@ return (
           gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", // 300px se 280px kiya for small phones
           gap: "15px" 
         }}>
-          
-         {/* --- Naye Code me Existing Records ke loop ko isse replace karein --- */}
-{data.length > 0 ? data.map(item => (
-  <div key={item._id} style={{ border: "1px solid #ddd", padding: "15px", borderRadius: "8px", background: "#ffffff", boxShadow: "0 2px 4px rgba(0,0,0,0.05)" }}>
-    {fields.map(f => (
-      f === "image" && item[f] ? (
-        <img
-          key={f}
-          src={
-            item[f].startsWith('http')
-              ? item[f].replace(/ /g, "%20")
-              : `${BASE_URL}${item[f].startsWith('/') ? '' : '/'}${item[f]}`.replace(/([^:]\/)\/+/g, "$1")
-          }
-          alt="img"
-          style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "4px", marginBottom: "10px" }}
-        />
-      ) : f !== "image" && (
-        // Purane style ko wapas laya gaya hai fix black color ke sath
-        <p key={f} style={{ margin: "8px 0", fontSize: "14px", color: "#333333", textAlign: "left" }}>
-          <strong style={{ color: "#000000", textTransform: "lowercase" }}>{f}:</strong>{" "}
-          {Array.isArray(item[f]) ? item[f].join(", ") : item[f]?.toString() || "—"}
-        </p>
-      )
-    ))}
-
-    <div style={{ marginTop: "15px", display: "flex", gap: "10px" }}>
-      {!isReadOnly && (
-        <button onClick={() => handleEdit(item)} style={{ flex: 1, padding: "8px", background: "#ffc107", color: "#000", border: "none", borderRadius: "4px", cursor: "pointer", fontWeight: "bold" }}>Edit</button>
-      )}
-      <button onClick={() => handleDelete(item._id)} style={{ flex: 1, padding: "8px", background: "#dc3545", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", fontWeight: "bold" }}>Delete</button>
-    </div>
-  </div>
-)) : <p style={{ color: "#666" }}>No records found.</p>}
+           {data.length > 0 ? data.map(item => ( <div key={item._id} style={{ border: "1px solid #ddd", padding: "15px", borderRadius: "8px", background: "white", boxShadow: "0 2px 4px rgba(0,0,0,0.05)" }}> {fields.map(f => ( f === "image" && item[f] ? ( <img key={f} src={ item[f].startsWith('http') ? item[f].replace(/ /g, "%20") : `${BASE_URL}${item[f].startsWith('/') ? '' : '/'}${item[f]}`.replace(/([^:]\/)\/+/g, "$1") } alt="img" style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "4px", marginBottom: "10px" }} /> ) : f !== "image" && ( <p key={f} style={{ margin: "5px 0", fontSize: "14px", wordBreak: "break-word" }}> <strong>{f}:</strong> {Array.isArray(item[f]) ? item[f].join(", ") : item[f]?.toString()} </p> ) ))} <div style={{ marginTop: "15px", display: "flex", gap: "10px" }}> {!isReadOnly && ( <button onClick={() => handleEdit(item)} style={{ flex: 1, padding: "8px", background: "#ffc107", border: "none", borderRadius: "4px" }}>Edit</button> )} <button onClick={() => handleDelete(item._id)} style={{ flex: 1, padding: "8px", background: "#dc3545", color: "white", border: "none", borderRadius: "4px" }}>Delete</button> </div> </div> )) : <p>No records found.</p>} 
+         
         </div>
       )}
     </div>
