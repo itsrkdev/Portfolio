@@ -14,38 +14,27 @@ export default function SectionAdmin({ apiUrl, fields, fieldsType, isReadOnly = 
 
   const token = localStorage.getItem("adminToken");
 
-// 🔴 Is poore fetchData function ko SectionAdmin.jsx mein replace karein
+
+
   const fetchData = async () => {
     try {
       setLoading(true);
+      const isSingleObject = apiUrl === "/api/hero" || apiUrl === "/api/contact-info";
 
-      // Contact info ke paas /all route nahi hai, isliye sirf usko alag rakhenge
-      const isContactSection = apiUrl === "/api/contact-info";
-
-      // Hero aur baaki sabhi sections /all par jayenge (e.g., /api/hero/all)
-      // Contact info direct jayega (e.g., /api/contact-info)
-      const url = isContactSection
+      const url = isSingleObject
         ? `${BASE_URL}${apiUrl}`
         : `${BASE_URL}${apiUrl}/all`;
 
-      // Token ke sath backend ko hit karenge
+      // Token ko header mein bhejien
       const res = await axios.get(url, {
         headers: { token: `Bearer ${token}` }
       });
 
       const result = res.data;
-
-      // Data format handling taaki card crash na ho aur show ho sake
-      if (Array.isArray(result)) {
-        setData(result);
-      } else if (result && typeof result === "object" && Object.keys(result).length > 0) {
-        setData([result]);
-      } else {
-        setData([]);
-      }
-
+      setData(Array.isArray(result) ? result : result ? [result] : []);
     } catch (err) {
       console.error("Fetch Error:", err);
+      // Agar token expire ho jaye toh user ko wapas login par bhej sakte hain
       if (err.response?.status === 401 || err.response?.status === 403) {
         localStorage.removeItem("adminToken");
         window.location.href = "/login";
@@ -55,35 +44,6 @@ export default function SectionAdmin({ apiUrl, fields, fieldsType, isReadOnly = 
       setLoading(false);
     }
   };
-
-  // const fetchData = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const isSingleObject = apiUrl === "/api/hero" || apiUrl === "/api/contact-info";
-
-  //     const url = isSingleObject
-  //       ? `${BASE_URL}${apiUrl}`
-  //       : `${BASE_URL}${apiUrl}/all`;
-
-  //     // Token ko header mein bhejien
-  //     const res = await axios.get(url, {
-  //       headers: { token: `Bearer ${token}` }
-  //     });
-
-  //     const result = res.data;
-  //     setData(Array.isArray(result) ? result : result ? [result] : []);
-  //   } catch (err) {
-  //     console.error("Fetch Error:", err);
-  //     // Agar token expire ho jaye toh user ko wapas login par bhej sakte hain
-  //     if (err.response?.status === 401 || err.response?.status === 403) {
-  //       localStorage.removeItem("adminToken");
-  //       window.location.href = "/login";
-  //     }
-  //     setData([]);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
 
 
