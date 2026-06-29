@@ -28,6 +28,10 @@ app.use(express.json());
 // Server.js mein dono rakhein
 // app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+app.get("/status", (req, res) => {
+  res.send("Server is alive and kicking!");
+});
+
 // Routes Use Karein
 app.use("/api/auth", authRoutes);
 app.use("/api/home", require("./Routes/HeroRoute"));
@@ -46,9 +50,6 @@ app.use((req, res) => {
     res.status(404).json({ message: "Bhai, ye API endpoint exit nahi karta!" });
 });
 
-app.get("/status", (req, res) => {
-  res.send("Server is alive and kicking!");
-});
 
 
 mongoose.connect(process.env.DB_URL)
