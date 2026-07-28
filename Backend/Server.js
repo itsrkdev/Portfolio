@@ -28,9 +28,9 @@ app.use(express.json());
 // Server.js mein dono rakhein
 // app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.get("/status", (req, res) => {
-  res.send("Server is alive and kicking!");
-});
+// app.get("/status", (req, res) => {
+//   res.send("Server is alive and kicking!");
+// });
 
 // Routes Use Karein
 app.use("/api/auth", authRoutes);
