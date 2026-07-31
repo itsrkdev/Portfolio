@@ -28,9 +28,6 @@ app.use(express.json());
 // Server.js mein dono rakhein
 // app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.get("/", (req, res) => { 
-    res.send("server is running Mongodb connected"); 
-});
 
 // Routes Use Karein
 app.use("/api/auth", authRoutes);
@@ -42,6 +39,9 @@ app.use("/api/skills", require("./Routes/SkillRoutes"));
 app.use("/api/contact-msg", require("./Routes/ContactMsgRoute"));
 app.use("/api/contact-info", require("./Routes/ContactInfoRoute"));
 
+app.get("/", (req, res) => { 
+    res.send("server is running Mongodb connected"); 
+});
 
 
 app.use((req, res) => {
