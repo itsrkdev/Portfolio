@@ -1,261 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+/* ===== Tokens — matched with Hero.css ===== */
 #modern-services-section {
-    --bg-dark: #0a0f1a00;
-    --accent: #ff6f61;
-    --card-bg: rgba(255, 255, 255, 0.03);
-    
-    background-color: var(--bg-dark);
-    padding: 100px 20px;
-    min-height: 100vh;
-    color: white;
-    font-family: 'Inter', sans-serif;
+  /* --bg: #0b1210; */
+  --bg:transparent;
+  --surface: #141e1b;
+  --text: #edeae2;
+  --text-dim: #93a39c;
+  --accent: #ff7a45;
+  --border: rgba(237, 234, 226, 0.1);
+  --border-strong: rgba(237, 234, 226, 0.2);
+
+  position: relative;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  padding: 120px 48px;
+  box-sizing: border-box;
+  
 }
 
 .services-container {
-    max-width: 1100px;
-    margin: 0 auto;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
+/* ===== Header ===== */
 .services-header {
-    text-align: center;
-    margin-bottom: 70px;
+  text-align: center;
+  max-width: 100%;
+  margin: 0 0 64px;
 }
 
-.services-header h1 {
-    font-size: 3.5rem;
-    font-weight: 800;
+.services-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin-bottom: 20px;
 }
 
-.services-header h1 span {
-    color: var(--accent);
-    text-shadow: 0 0 20px rgba(255, 111, 97, 0.3);
+.services-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(255, 122, 69, 0.18);
+}
+
+.section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.2rem, 4.4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+  color: var(--text);
+}
+
+.section-title span {
+  color: var(--accent);
 }
 
 .services-header p {
-    color: #94a3b8;
-    margin-top: 10px;
+  font-size: 1.02rem;
+  color: var(--text-dim);
+  margin: 0;
 }
 
-/* Services Grid - Horizontal Stack */
-.services-list-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+/* ===== List ===== */
+.services-list {
+  border-top: 1px solid var(--border);
 }
 
-.service-glass-card {
-    display: flex;
-    align-items: center;
-    background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 30px;
-    border-radius: 24px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+/* ===== Row ===== */
+.service-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px 1fr 64px 44px;
+  align-items: center;
+  gap: 28px;
+  padding: 30px 20px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s ease, padding-left 0.3s ease;
 }
 
-/* The Hover Effect */
-.service-glass-card:hover {
-    background: rgba(255, 111, 97, 0.05);
-    border-color: var(--accent);
-    transform: scale(1.02);
+.service-row:hover {
+  background: var(--surface);
+  padding-left: 32px;
 }
 
-.service-number {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: rgba(255, 255, 255, 0.05);
-    margin-right: 40px;
-    transition: 0.3s;
+.row-number {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  color: var(--text-dim);
+  transition: color 0.3s ease;
 }
 
-.service-glass-card:hover .service-number {
-    color: var(--accent);
-    opacity: 0.3;
+.service-row:hover .row-number {
+  color: var(--accent);
+}
+
+.service-row-main h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 0 0 8px;
+  transition: color 0.3s ease;
+}
+
+.service-row:hover .service-row-main h3 {
+  color: var(--accent);
+}
+
+.service-row-main p {
+  font-size: 0.93rem;
+  line-height: 1.65;
+  color: var(--text-dim);
+  margin: 0;
+  max-width: 480px;
 }
 
 .service-image-box {
-    width: 100px;
-    height: 100px;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-right: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(255, 122, 69, 0.08);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+  justify-self: end;
+}
+
+.service-row:hover .service-image-box {
+  border-color: rgba(255, 122, 69, 0.35);
 }
 
 .service-image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 56%;
+  height: 56%;
+  object-fit: contain;
 }
 
-.service-info {
-    flex: 1;
+.row-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  opacity: 0;
+  transform: translateX(-10px) rotate(-45deg);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
-.service-info h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    transition: 0.3s;
+.service-row:hover .row-arrow {
+  opacity: 1;
+  transform: translateX(0) rotate(0deg);
+  color: #16100a;
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
-.service-glass-card:hover .service-info h3 {
-    color: var(--accent);
+.services-empty {
+  color: var(--text-dim);
+  padding: 40px 20px;
 }
 
-.service-info p {
-    color: #94a3b8;
-    max-width: 600px;
-    line-height: 1.6;
-}
-
-.service-arrow {
-    font-size: 1.5rem;
-    color: #334155;
-    transition: all 0.4s ease;
-    transform: translateX(-20px);
-    opacity: 0;
-}
-
-.service-glass-card:hover .service-arrow {
-    opacity: 1;
-    transform: translateX(0);
-    color: var(--accent);
-}
-
-/* Mobile Responsive */
-
-
-/* ... (Aapka existing desktop CSS same rahega) ... */
-
-/* Mobile & Tablet Responsive */
-@media (max-width: 968px) {
-    .services-header h1 {
-        margin-top: 20px;
-        font-size: 2.8rem; /* Tablet ke liye thoda chhota font */
-    }
-}
-
-@media (max-width: 768px) {
-    #modern-services-section {
-        padding: 60px 15px; /* Kam padding mobile par */
-    }
-
-    .services-header {
-        margin-bottom: 40px;
-    }
-
-    .services-header h1 {
-        font-size: 2.2rem; /* Mobile ke liye optimized */
-    }
-
-    .service-glass-card {
-        flex-direction: column; /* Stack vertically */
-        text-align: center;
-        padding: 40px 20px;
-        gap: 15px;
-    }
-
-    .service-number {
-        margin: 0; 
-        font-size: 2rem;
-        position: absolute; /* Number ko background mein ya top par rakhne ke liye */
-        top: 15px;
-        right: 20px;
-        opacity: 0.1;
-    }
-
-    .service-glass-card:hover .service-number {
-        opacity: 0.2;
-    }
-
-    .service-image-box {
-        margin: 0 auto 10px auto; /* Center image */
-        width: 80px;  /* Mobile par image size thoda kam */
-        height: 80px;
-        border-radius: 12px;
-    }
-
-    .service-info h3 {
-        font-size: 1.5rem;
-    }
-
-    .service-info p {
-        font-size: 0.95rem;
-        max-width: 100%; /* Full width text */
-        margin: 0 auto;
-    }
-
-    .service-arrow {
-        display: none; /* Mobile par arrow ki zaroorat nahi hoti usually */
-    }
-}
-
-@media (max-width: 480px) {
-    .services-header h1 {
-        font-size: 1.8rem;
-    }
-    
-    .service-glass-card {
-        border-radius: 18px; /* Chhote phones par sharp corners better lagte hain */
-    }
-}
-
-/* --- Skeleton Styles --- */
-
-/* Shimmer Animation */
+/* ===== Skeleton loading ===== */
 .skeleton {
-    background: #242424;
-    background: linear-gradient(90deg,
-            #242424 25%,
-            #333333 50%,
-            #242424 75%);
-    background-size: 200% 100%;
-    animation: skeleton-shimmer 1.5s infinite linear;
-    border-radius: 4px;
+  background: linear-gradient(90deg, var(--surface) 25%, var(--border) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+  border-radius: 8px;
 }
 
-@keyframes skeleton-shimmer {
-    0% {
-        background-position: 200% 0;
-    }
-
-    100% {
-        background-position: -200% 0;
-    }
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
-/* Service Card Skeleton Shapes */
-.skeleton-number {
-    width: 30px;
-    height: 20px;
-    margin-bottom: 15px;
+.service-row.skeleton-active {
+  grid-template-columns: 60px 1fr 64px;
 }
 
-.skeleton-img-circle {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin-bottom: 15px;
+.skeleton-number { width: 28px; height: 16px; }
+.skeleton-title-sm { width: 45%; height: 20px; margin-bottom: 10px; }
+.skeleton-text-line { width: 75%; height: 12px; }
+.skeleton-img-circle { width: 52px; height: 52px; border-radius: 12px; justify-self: end; }
+
+/* ===== Responsive ===== */
+@media (max-width: 720px) {
+  #modern-services-section { padding: 90px 20px; }
+
+  .service-row {
+    grid-template-columns: 40px 1fr;
+    grid-template-areas:
+      "num arrow"
+      "main main"
+      "img img";
+    row-gap: 14px;
+    padding: 26px 12px;
+  }
+
+  .service-row:hover { padding-left: 12px; }
+
+  .row-number { grid-area: num; }
+  .row-arrow { grid-area: arrow; justify-self: end; }
+  .service-row-main { grid-area: main; }
+  .service-image-box { grid-area: img; justify-self: start; }
+
+  .service-row.skeleton-active {
+    grid-template-columns: 40px 1fr;
+  }
 }
 
-.skeleton-title-sm {
-    width: 60%;
-    height: 20px;
-    margin-bottom: 15px;
+/* ===== Accessibility ===== */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton, .service-row, .row-arrow {
+    animation: none !important;
+    transition: none !important;
+  }
 }
-
-.skeleton-text-line {
-    width: 100%;
-    height: 12px;
-    margin-bottom: 8px;
-}
-
-/* Skeleton Container Styles */
-.skeleton-active {
-    pointer-events: none;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    background: rgba(255, 255, 255, 0.02) !important;
-}
-

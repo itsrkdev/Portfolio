@@ -1,268 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+/* ===== Tokens — matched with Hero.css / Service.css ===== */
 #modern-projects-section {
-  --bg-dark: transparent; 
-  --accent: #ff6f61; /* Aapka signature coral-orange color */
-  /* FIX: Slate-Blue mix hata kar pure dark transparent glass blend kiya */
-  --card-bg: rgba(255, 255, 255, 0.03); 
-  
-  background-color: var(--bg-dark);
-  padding: 90px 20px;
-  min-height: 100vh;
-  color: #ffffff;
-  font-family: 'Inter', system-ui, sans-serif;
+  /* --bg: #0b1210; */
+  --bg:transparent;
+  --surface: #141e1b;
+  --text: #edeae2;
+  --text-dim: #93a39c;
+  --accent: #ff7a45;
+  --border: rgba(237, 234, 226, 0.1);
+  --border-strong: rgba(237, 234, 226, 0.2);
+
+  position: relative;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  padding: 120px 48px;
+  box-sizing: border-box;
 }
 
 .project-container {
-  max-width: 1200px;
+  max-width: 1180px;
   margin: 0 auto;
 }
 
-/* Header Styling */
+/* ===== Header ===== */
 .project-header {
   text-align: center;
-  margin-bottom: 60px;
+  max-width: 560px;
+  margin: 0 auto 64px;
 }
 
-.project-header .section-title {
-  font-size: 3.2rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  margin-bottom: 12px;
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin-bottom: 20px;
 }
 
-.project-header .section-title span {
+.project-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(255, 122, 69, 0.18);
+}
+
+.section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.2rem, 4.4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+  color: var(--text);
+}
+
+.section-title span {
   color: var(--accent);
-  text-shadow: 0 0 20px rgba(255, 111, 97, 0.3);
 }
 
 .section-subtitle {
-  color: #94a3b8;
-  font-size: 1.1rem;
-  font-weight: 400;
+  font-size: 1.02rem;
+  color: var(--text-dim);
+  margin: 0;
 }
 
-/* Grid Layout */
+/* ===== Grid ===== */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
 }
 
-/* Premium Card Structure */
+/* ===== Card — image-led, hover zoom + overlay panel ===== */
 .project-item {
-  background: var(--card-bg) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06); 
-  border-radius: 20px;
-  overflow: hidden; 
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.4s ease,
-              background-color 0.4s ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* --- HIGH-END MODERN GLOW HOVER EFFECT --- */
-.project-item:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 111, 97, 0.3); 
-  /* Pure ambient soft coral neon aura glow without harsh dark block shadows */
-  background: rgba(255, 111, 97, 0.02) !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
-              0 0 30px rgba(255, 111, 97, 0.2); 
-}
-
-/* Image Presentation (Standard 16:9 widescreen) */
-.project-image-box {
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  border-radius: 18px;
   overflow: hidden;
-  background: #000000; /* FIX: Pure deep black behind image, no blue tint */
+}
+
+.project-image-box {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
 }
 
 .project-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
-  object-position: top;
-  filter: brightness(0.9);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1), filter 0.5s ease;
+  filter: grayscale(35%) brightness(0.9);
 }
 
 .project-item:hover .project-img {
-  transform: scale(1.04); 
-  filter: brightness(1.02);
+  transform: scale(1.08);
+  filter: grayscale(0%) brightness(0.75);
 }
 
-/* Card Content Area */
-.project-info-content {
-  padding: 26px;
-  /* FIX: Light translucent glass texture layer instead of blue blocks */
-  background: rgba(255, 255, 255, 0.01); 
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+/* Bottom glass panel — always partly visible, expands on hover */
+.project-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 22px 22px 20px;
+  background: linear-gradient(to top, rgba(6, 10, 9, 0.95) 0%, rgba(6, 10, 9, 0.75) 55%, transparent 100%);
+  transform: translateY(38%);
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
-/* Container ko full width handle karne ke liye set kiya */
-.project-meta {
-  display: block; /* Flex hata kar block kiya taaki text flow natural rahe */
-  width: 100%;
-  margin-bottom: 16px;
+.project-item:hover .project-overlay {
+  transform: translateY(0);
+  background-color: rgba(7, 7, 7, 0.575);
 }
 
-/* FIX: Isi pure CSS block se single string bina cut-out huye wrap ho jayegi */
 .project-tag {
   display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
   color: var(--accent);
-  background: rgba(255, 111, 97, 0.08);
-  font-size: 0.7rem; 
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 111, 97, 0.15);
-  
-  /* --- CRITICAL CSS TRICK FOR SINGLE STRING WRAPPING --- */
-  white-space: normal !important;      /* Text ko force karega normal flow me tootne ke liye */
-  word-break: break-word !important;   /* Agar bada word ho toh toot jaye */
-  overflow-wrap: break-word !important;/* Purani line khatam hote hi niche shift karega */
-  line-height: 1.8 !important;         /* Do lines ke beech me thoda space banaega */
-}
-/* .project-tag {
-  display: inline-block;
-  color: var(--accent);
-  background: rgba(255, 111, 97, 0.08);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  padding: 4px 12px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 111, 97, 0.15);
+  border: 1px solid rgba(255, 122, 69, 0.35);
+   background: rgb(22 21 21 / 59%);
+  padding: 4px 10px;
+  border-radius: 4px;
   margin-bottom: 12px;
-  width: max-content;
-} */
+}
 
-/* Card Heading Title with Soft Text Glow on Hover */
 .project-card-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #f8fafc;
-  margin: 0 0 24px 0;
-  line-height: 1.4;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 14px;
+  letter-spacing: -0.01em;
 }
 
-.project-item:hover .project-card-title {
-  color: var(--accent);
-  text-shadow: 0 0 15px rgba(255, 111, 97, 0.3);
-}
-
-.project-action-box {
-  margin-top: auto;
-}
-
-/* Action Link / Button */
 .project-link {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  color: #ffffff;
-  text-decoration: none;
+  font-size: 0.88rem;
   font-weight: 600;
-  font-size: 0.9rem;
-  background: rgba(255, 255, 255, 0.04);
-  width: 100%;
-  padding: 13px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.3s ease;
+  color: var(--text);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease, color 0.25s ease, gap 0.25s ease;
 }
 
-.project-link:hover {
-  background: var(--accent);
-  color: #ffffff;
-  border-color: var(--accent);
-  box-shadow: 0 8px 20px rgba(255, 111, 97, 0.4);
+.project-item:hover .project-link {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .project-link i {
-  font-size: 0.8rem;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease;
+}
+
+.project-link:hover {
+  color: var(--accent);
 }
 
 .project-link:hover i {
   transform: translateX(3px);
 }
 
-/* --- Responsive Rules --- */
-@media (max-width: 768px) {
-  #modern-projects-section {
-    padding: 60px 16px;
-  }
-  .project-header .section-title {
-    font-size: 2.5rem;
-  }
-  .projects-grid {
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 20px;
-  }
-  .project-header{
-    margin-top: 30px;
-  }
-}
-
-/* --- FIX: Universal Dark Charcoal Skeleton Loading Theme (No Blue Tint) --- */
+/* ===== Skeleton loading ===== */
 .skeleton-image {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #16161a;
+  position: relative;
+  overflow: hidden;
 }
 
-.skeleton-text-box {
-  padding: 26px;
-  background: #0f0f12;
-}
-
-.skeleton {
-  /* FIX: Blue blocks slate gradients changed to sleek cosmic gray tones */
-  background: linear-gradient(90deg, #16161a 25%, #24242b 50%, #16161a 75%);
+.skeleton-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--surface) 25%, var(--border) 50%, var(--surface) 75%);
   background-size: 200% 100%;
-  animation: skeleton-shimmer 1.5s infinite linear;
+  animation: shimmer 1.6s infinite;
 }
 
-.skeleton-tag {
-  width: 65px;
-  height: 22px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
-
-.skeleton-title {
-  width: 70%;
-  height: 24px;
-  border-radius: 6px;
-  margin-bottom: 24px;
-}
-
-.skeleton-btn {
-  width: 100%;
-  height: 44px;
-  border-radius: 12px;
-}
-
-@keyframes skeleton-shimmer {
+@keyframes shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
 
-.skeleton-active {
-  pointer-events: none;
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  #modern-projects-section { padding: 90px 20px; }
+  .project-header { margin-bottom: 44px; }
+  .project-overlay { transform: translateY(0); }
+}
+
+/* ===== Accessibility ===== */
+@media (prefers-reduced-motion: reduce) {
+  .project-img, .project-overlay, .project-link, .skeleton-image::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

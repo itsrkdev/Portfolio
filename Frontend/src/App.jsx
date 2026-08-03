@@ -25,10 +25,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element:<>
-          <Hero />,
-        <Services />,
-          <Project />,
-          <Skills />,
+          <Hero />
+          <Services />
+          <Project />
+          <Skills />
           <Contact />
         </> 
         

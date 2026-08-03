@@ -25,6 +25,10 @@ export default function Skills() {
     <section id="modern-skills-section">
       <div className="bento-container">
         <header className="bento-header">
+          <span className="bento-badge">
+            <span className="bento-badge-dot"></span>
+            What I Know
+          </span>
           <h2>Tech <span>Stack</span></h2>
           <p>Mastery in modern web technologies</p>
         </header>
