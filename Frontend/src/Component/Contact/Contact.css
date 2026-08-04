@@ -2,8 +2,7 @@
 
 /* ===== Tokens — matched across Hero/Service/Project/Skills ===== */
 #modern-contact-section {
-  /* --bg: #0b1210; */
-   --bg:transparent;
+  --bg: #0b1210;
   --surface: #141e1b;
   --text: #edeae2;
   --text-dim: #93a39c;
@@ -197,6 +196,25 @@
 .input-group textarea:focus {
   border-color: var(--accent);
   background: rgba(255, 122, 69, 0.04);
+}
+
+/* Kill Chrome/Edge's white autofill background + fix label overlap */
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover,
+.input-group input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #141e1b inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+  caret-color: var(--text);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.input-group input:-webkit-autofill + label {
+  top: 8px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--accent);
 }
 
 .input-group label {
