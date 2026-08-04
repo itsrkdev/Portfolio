@@ -168,7 +168,25 @@
 }
 
 .input-group {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  order: -1;
+  position: static;
+  margin-bottom: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+
+.input-group input:focus ~ label,
+.input-group textarea:focus ~ label {
+  color: var(--accent);
 }
 
 .input-group input,
@@ -177,7 +195,7 @@
   background: rgba(237, 234, 226, 0.03);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 24px 16px 10px;
+  padding: 14px 16px;
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   color: var(--text);
@@ -186,10 +204,15 @@
   transition: border-color 0.25s ease, background 0.25s ease;
 }
 
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: var(--text-dim);
+  opacity: 0.6;
+}
+
 .input-group textarea {
   min-height: 120px;
   resize: vertical;
-  padding-top: 26px;
 }
 
 .input-group input:focus,
@@ -198,7 +221,7 @@
   background: rgba(255, 122, 69, 0.04);
 }
 
-/* Kill Chrome/Edge's white autofill background + fix label overlap */
+/* Kill Chrome/Edge's white autofill background */
 .input-group input:-webkit-autofill,
 .input-group input:-webkit-autofill:hover,
 .input-group input:-webkit-autofill:focus {
@@ -206,37 +229,6 @@
   -webkit-text-fill-color: var(--text) !important;
   caret-color: var(--text);
   transition: background-color 9999s ease-in-out 0s;
-}
-
-.input-group input:-webkit-autofill + label {
-  top: 7px;
-  font-size: 10.5px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--accent);
-}
-
-.input-group label {
-  position: absolute;
-  left: 16px;
-  top: 22px;
-  font-size: 0.95rem;
-  color: var(--text-dim);
-  pointer-events: none;
-  transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
-}
-
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label,
-.input-group textarea:focus + label,
-.input-group textarea:not(:placeholder-shown) + label {
-  top: 7px;
-  font-size: 10.5px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--accent);
 }
 
 .submit-btn {
