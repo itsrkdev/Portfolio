@@ -177,7 +177,7 @@
   background: rgba(237, 234, 226, 0.03);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 18px 16px 10px;
+  padding: 24px 16px 10px;
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
   color: var(--text);
@@ -189,7 +189,7 @@
 .input-group textarea {
   min-height: 120px;
   resize: vertical;
-  padding-top: 22px;
+  padding-top: 26px;
 }
 
 .input-group input:focus,
@@ -209,8 +209,8 @@
 }
 
 .input-group input:-webkit-autofill + label {
-  top: 8px;
-  font-size: 11px;
+  top: 7px;
+  font-size: 10.5px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-family: 'IBM Plex Mono', monospace;
@@ -220,7 +220,7 @@
 .input-group label {
   position: absolute;
   left: 16px;
-  top: 18px;
+  top: 22px;
   font-size: 0.95rem;
   color: var(--text-dim);
   pointer-events: none;
@@ -231,8 +231,8 @@
 .input-group input:not(:placeholder-shown) + label,
 .input-group textarea:focus + label,
 .input-group textarea:not(:placeholder-shown) + label {
-  top: 8px;
-  font-size: 11px;
+  top: 7px;
+  font-size: 10.5px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-family: 'IBM Plex Mono', monospace;
