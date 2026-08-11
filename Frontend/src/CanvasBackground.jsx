@@ -76,7 +76,7 @@ export default function CanvasBackground() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < LINK_DISTANCE) {
-            const opacity = (1 - dist / LINK_DISTANCE) * 0.3;
+            const opacity = (1 - dist / LINK_DISTANCE) * 0.6;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
