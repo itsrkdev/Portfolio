@@ -66,3 +66,22 @@
     margin-top: -50px; /* Slightly upward for better balance */
   }
 }
+/* Badi Screen ke liye height adjust karna ho toh */
+@media (min-height: 800px) {
+  .login-form {
+    margin-top: -50px; /* Slightly upward for better balance */
+  }
+}
+
+/* 4. Chrome / Safari Autofill Styling Fix */
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover, 
+.input-group input:-webkit-autofill:focus,
+.input-group input:-webkit-autofill:active {
+    -webkit-text-fill-color: #333333 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
